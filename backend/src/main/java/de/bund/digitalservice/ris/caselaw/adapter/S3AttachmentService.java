@@ -8,6 +8,7 @@ import de.bund.digitalservice.ris.caselaw.domain.Attachment;
 import de.bund.digitalservice.ris.caselaw.domain.AttachmentException;
 import de.bund.digitalservice.ris.caselaw.domain.AttachmentService;
 import de.bund.digitalservice.ris.caselaw.domain.StringUtils;
+import io.github.pixee.security.ZipSecurity;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -89,7 +90,7 @@ public class S3AttachmentService implements AttachmentService {
   }
 
   void checkDocx(ByteBuffer byteBuffer) {
-    var zip = new ZipInputStream(new ByteArrayInputStream(byteBufferToArray(byteBuffer)));
+    var zip = ZipSecurity.createHardenedInputStream(new ByteArrayInputStream(byteBufferToArray(byteBuffer)));
     ZipEntry entry;
     try {
       while ((entry = zip.getNextEntry()) != null) {
