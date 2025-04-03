@@ -1,5 +1,6 @@
 package de.bund.digitalservice.ris.caselaw.adapter;
 
+import java.security.SecureRandom;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -181,7 +182,7 @@ class S3AttachmentServiceTest {
   @Test
   void testCheckDocx_withCorruptedDocx() {
     byte[] corruptedData = new byte[1024];
-    new Random().nextBytes(corruptedData);
+    new SecureRandom().nextBytes(corruptedData);
     ByteBuffer byteBuffer = ByteBuffer.wrap(corruptedData);
 
     assertThrows(ResponseStatusException.class, () -> service.checkDocx(byteBuffer));

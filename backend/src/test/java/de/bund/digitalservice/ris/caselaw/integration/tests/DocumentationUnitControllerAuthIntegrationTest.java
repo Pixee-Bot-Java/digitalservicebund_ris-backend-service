@@ -4,6 +4,7 @@ import static de.bund.digitalservice.ris.caselaw.AuthUtils.mockDocOfficeUserGrou
 import static de.bund.digitalservice.ris.caselaw.domain.PublicationStatus.PUBLISHED;
 import static de.bund.digitalservice.ris.caselaw.domain.PublicationStatus.PUBLISHING;
 import static de.bund.digitalservice.ris.caselaw.domain.PublicationStatus.UNPUBLISHED;
+import java.security.SecureRandom;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -331,7 +332,7 @@ class DocumentationUnitControllerAuthIntegrationTest {
   private DocumentationUnitDTO createNewDocumentationUnitDTO(
       UUID documentationUnitUuid, DocumentationOfficeDTO documentationOffice) {
     String documentNumber =
-        new Random().ints(13, 0, 10).mapToObj(Integer::toString).collect(Collectors.joining());
+        new SecureRandom().ints(13, 0, 10).mapToObj(Integer::toString).collect(Collectors.joining());
     return repository.save(
         DocumentationUnitDTO.builder()
             .id(documentationUnitUuid)
