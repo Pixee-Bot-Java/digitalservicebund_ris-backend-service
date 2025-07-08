@@ -5,6 +5,7 @@ import static de.bund.digitalservice.ris.caselaw.AuthUtils.mockDocOfficeUserGrou
 import static de.bund.digitalservice.ris.caselaw.domain.PublicationStatus.PUBLISHED;
 import static de.bund.digitalservice.ris.caselaw.domain.PublicationStatus.PUBLISHING;
 import static de.bund.digitalservice.ris.caselaw.domain.PublicationStatus.UNPUBLISHED;
+import java.security.SecureRandom;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -316,7 +317,7 @@ class DocumentationUnitIntegrationTest {
                 .type("BGH")
                 .isSuperiorCourt(true)
                 .isForeignCourt(false)
-                .jurisId(new Random().nextInt())
+                .jurisId(new SecureRandom().nextInt())
                 .build());
     CourtDTO lgCourt =
         databaseCourtRepository.save(
@@ -324,7 +325,7 @@ class DocumentationUnitIntegrationTest {
                 .type("LG")
                 .isSuperiorCourt(false)
                 .isForeignCourt(false)
-                .jurisId(new Random().nextInt())
+                .jurisId(new SecureRandom().nextInt())
                 .build());
 
     DocumentationUnitDTO dto =
@@ -460,7 +461,7 @@ class DocumentationUnitIntegrationTest {
                 .location("Karlsruhe")
                 .isSuperiorCourt(true)
                 .isForeignCourt(false)
-                .jurisId(new Random().nextInt())
+                .jurisId(new SecureRandom().nextInt())
                 .region(region)
                 .build());
 
@@ -769,7 +770,7 @@ class DocumentationUnitIntegrationTest {
                   .location(courtLocations.get(i))
                   .isSuperiorCourt(true)
                   .isForeignCourt(false)
-                  .jurisId(new Random().nextInt())
+                  .jurisId(new SecureRandom().nextInt())
                   .build());
       DocumentationUnitDTO dto =
           repository.save(
